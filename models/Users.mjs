@@ -27,11 +27,11 @@ const Users = mongoose.Schema({
   contact: {
     phone: {
       type: Number,
-      default: 0,
+      default: 62,
     },
     whatsapp: {
       type: Number,
-      default: 0,
+      default: 62,
     },
   },
   address: {

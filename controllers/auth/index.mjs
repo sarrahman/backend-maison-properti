@@ -126,7 +126,7 @@ export const updateUser = async (req, res) => {
     const newUser = {
       nama: nama || user.nama,
       isSeller: isSeller || false,
-      about: about || user.about,
+      about: about,
       address: {
         street: address || user.address.street,
         city: city || user.address.city,
