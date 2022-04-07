@@ -154,66 +154,6 @@ export const updateUser = async (req, res) => {
   }
 };
 
-export const registerGoogle = async (req, res) => {
-  const { username, email, photoUrl } = req.body;
-  const user = await Users.findOne({ email });
-  if (user) {
-    return res.status(400).json({
-      message: "User Sudah Terdaftar",
-    });
-  }
-  const newUser = new Users({
-    username,
-    email,
-    photoUrl,
-  });
-  try {
-    await newUser.save();
-    return res.status(201).json({
-      message: "User Berhasil Ditambahkan",
-    });
-  } catch (error) {
-    res.status(500).json({
-      error,
-      message: error.message,
-    });
-  }
-};
-
-export const loginGoogle = async (req, res) => {
-  try {
-    const { email, photoUrl } = req.body;
-    const user = await Users.findOne({ email });
-    if (!user) {
-      return res.status(400).json({
-        message: "User Tidak Terdaftar",
-      });
-    }
-    const payload = {
-      user: {
-        id: user._id,
-        email: user.email,
-      },
-    };
-    await Users.findByIdAndUpdate(user._id, {
-      photoUrl: photoUrl || user.photoUrl,
-    });
-    const token = jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: "1d",
-    });
-    return res.status(200).json({
-      message: "Login Berhasil",
-      token,
-      uid: user._id,
-    });
-  } catch (error) {
-    res.status(500).json({
-      error,
-      message: error.message,
-    });
-  }
-};
-
 export const logout = async (req, res) => {
   try {
     const refreshToken = req.cookies.refreshToken;

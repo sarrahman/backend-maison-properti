@@ -1,11 +1,9 @@
 import express from "express";
 import {
   getUser,
-  loginGoogle,
   loginUser,
   logout,
   Profile,
-  registerGoogle,
   registerUser,
   updateUser,
 } from "../controllers/auth/index.mjs";
@@ -28,8 +26,6 @@ router.post("/auth/register", registerUser);
 router.post("/auth/login", loginUser);
 router.get("/auth/user/:id", getUser);
 router.patch("/auth/user/:id", updateUser);
-router.post("/auth/google/register", registerGoogle);
-router.post("/auth/google/login", loginGoogle);
 router.get("/auth/profile", verifyToken, Profile);
 router.delete("/logout", logout);
 
