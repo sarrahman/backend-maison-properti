@@ -20,20 +20,20 @@ import { verifyToken } from "../middleware/verifyToken.mjs";
 
 const router = express.Router();
 
-router.get("/token", refreshToken);
+router.get("/api/token", refreshToken);
 
-router.post("/auth/register", registerUser);
-router.post("/auth/login", loginUser);
-router.get("/auth/user/:id", getUser);
-router.patch("/auth/user/:id", updateUser);
-router.get("/auth/profile", verifyToken, Profile);
-router.delete("/logout", logout);
+router.post("/api/auth/register", registerUser);
+router.post("/api/auth/login", loginUser);
+router.get("/api/auth/user/:id", getUser);
+router.patch("/api/auth/user/:id", updateUser);
+router.get("/api/auth/profile", verifyToken, Profile);
+router.delete("/api/logout", logout);
 
-router.get("/products", getProducts);
-router.get("/product/:id", getProductById);
-router.get("/products/uid/:uid", getProductsByUid);
-router.post("/product", addProducts);
-router.patch("/product/:id", updateProduct);
-router.delete("/product/:id", deleteProduct);
+router.get("/api/products", getProducts);
+router.get("/api/product/:id", getProductById);
+router.get("/api/products/uid/:uid", getProductsByUid);
+router.post("/api/product", addProducts);
+router.patch("/api/product/:id", updateProduct);
+router.delete("/api/product/:id", deleteProduct);
 
 export default router;
